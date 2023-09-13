@@ -1,0 +1,24 @@
+{
+  "name": "myeasyteamtracker",
+  "version": "1.0.0",
+  "description": "This is an effective tool that enables business owners to easily view and manage the departments, roles and employees in the company as if by magic just by selecting the desired info from your command line. Have all the information you need to run your business like a wizard!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "index.js"
+  },
+  "keywords": [
+    "employee",
+    "tracker",
+    "helper",
+    "business",
+    "manager",
+    "management",
+    "productivity"
+  ],
+  "author": "Leopoldo Gurgel",
+  "license": "MIT",
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  }
+}
