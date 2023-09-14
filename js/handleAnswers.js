@@ -49,9 +49,11 @@ const handleAnswers = (data) => {
            })
     };
 
+    // concat(employee_firstName, ' ', employee_lastName) as Full_Name
+
     if (action == 'view all employees') {
 
-        db.query(`SELECT employee_id as ID, employee_firstName as First_Name, employee_lastName as Last_Name, role.role_title as Role, manager_id FROM employee join role on employee.role_id = role.role_id` , (err, result) => {
+        db.query(`SELECT employee_id as ID, concat(employee_firstName, ' ', employee_lastName) as Full_Name, role.role_title as Role, manager_id FROM employee join role on employee.role_id = role.role_id` , (err, result) => {
             if(err) {
                 console.error("Error:" + err);
             }
