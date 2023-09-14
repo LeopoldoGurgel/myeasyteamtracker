@@ -1,11 +1,17 @@
 const inquirer = require('inquirer');
+const mysql = require('mysql2');
+const sequelize = require('./config/connection');
+const handleAnswers = require('./js/handleAnswers')
 
-inquirer
-.prompt([
+const PORT = 3001;
+
+async function runQuestions() {
+while (true){
+const answers = await inquirer.prompt([
     {
         type: 'confirm',
         name: 'intro',
-        message: `Welcome to My Easy Team Tracker app. This tool was created to help keep track of your company's staff and update it in an organized fashion. Answer the next questions to select if you want to see information about your team, update an employee funtion, add a new employee or create a new role or a new department on your company.`
+        message: `Welcome to My Easy Team Tracker app. Answer the next questions to select if you want to see information about your team, update an employee funtion, add a new employee or create a new role or a new department on your company.`
     },
     {
         type: `list`,
@@ -60,9 +66,9 @@ inquirer
     },
     {
         when: (answers) => answers.action == 'add a role',
-        type: 'input',
+        type: 'number',
         name: 'roleDepartment',
-        message: `In what department will your new role be?`,
+        message: `What is the id number of your new role's department?`,
         validate: (value) => {
             if(value) {
                 return true
@@ -99,9 +105,9 @@ inquirer
     }, 
     {
         when: (answers) => answers.action == 'add an employee',
-        type: 'input',
+        type: 'number',
         name: 'employeeRole',
-        message: `What is the role of your new employee?`,
+        message: `What is the id number of the role of your new employee?`,
         validate: (value) => {
             if(value) {
                 return true
@@ -112,9 +118,9 @@ inquirer
     },   
     {
         when: (answers) => answers.action == 'add an employee',
-        type: 'input',
+        type: 'number',
         name: 'employeeManager',
-        message: `Who will be your new employee's manager?`,
+        message: `What is the ID number of your new employee's manager?`,
         validate: (value) => {
             if(value) {
                 return true
@@ -150,7 +156,23 @@ inquirer
         }
     },     
 ])
-.then((answers) => {
-    
-})
 
+handleAnswers(answers);
+
+const oneMoreAction = await inquirer.prompt([
+    {
+        type: 'confirm',
+        name: 'continue',
+        message: 'Do you want to perform another action?'
+    }
+])
+
+if(!oneMoreAction.continue){
+    console.log("Goodbye!");
+    break;
+}
+
+}}
+
+
+runQuestions();
