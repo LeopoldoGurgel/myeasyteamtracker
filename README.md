@@ -17,7 +17,9 @@ This is an effective tool that enables business owners to easily view and manage
 ## INSTALLATION
 1 - Clone this app repository on your local machine.  
 2 - On you command line, navigate to the folder containing the repo.  
-3 - Run <npm install> to apply the necessary node modules.
+3 - Rename the .env.EXAMPLE file to .env  
+4 - On .env file, insert your mySql password on the password field.  
+5 - Run <npm install> to apply the necessary node modules.
 
 
 ## USAGE

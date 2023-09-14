@@ -3,7 +3,7 @@ const mysql = require('mysql2');
 const sequelize = require('./config/connection');
 const handleAnswers = require('./js/handleAnswers')
 
-const PORT = 3001;
+const PORT = 3306;
 
 async function runQuestions() {
 while (true){
