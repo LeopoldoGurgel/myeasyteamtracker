@@ -62,7 +62,7 @@ const handleAnswers = (data) => {
     };
 
     if (action == 'add a department') {
-        db.query(`INSERT INTO department (department_name) VALUES (?)`, departmentName, (err, result) => {
+        db.query(`INSERT INTO department (department_name) VALUES (?)`, [departmentName], (err, result) => {
             if(err) {
                 console.error("Error:" + err);
             }
