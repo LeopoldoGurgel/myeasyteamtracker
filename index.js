@@ -9,26 +9,21 @@ async function runQuestions() {
 while (true){
 const answers = await inquirer.prompt([
     {
-        type: 'confirm',
-        name: 'intro',
-        message: `Welcome to My Easy Team Tracker app. Answer the next questions to select if you want to see information about your team, update an employee funtion, add a new employee or create a new role or a new department on your company.`
-    },
-    {
         type: `list`,
         name: `action`,
+        message: `Welcome to My Easy Team Tracker app. What do you need to do?`,
         choices: [`view all departments`, `view all roles`, `view all employees`, `add a department`, `add a role`, `add an employee`, `update an employee role`], 
         validate: (value) => {
-            if(value) {
-                return true
-            } else {
+            if(!value) {
                 return `You have to select an action in order to continue. If you do not need any of those options, you can close the terminal to finish the application. If you need to handle your database with an action that is not available in the list, contact the developer team. Email: leopoldogbp@gmail.com`
-            }
+                }
+                return true
         }
     },
     {
         type: `input`,
         name: `departmentName`,
-        message: `What id the name of your company's new department?`,
+        message: `What is the name of your company's new department?`,
         validate: (value) => {
             if(value) {
                 return true
@@ -70,13 +65,15 @@ const answers = await inquirer.prompt([
         name: 'roleDepartment',
         message: `What is the id number of your new role's department?`,
         validate: (value) => {
-            if(value) {
-                return true
-            } else {
+            if(!value || isNaN(value)) {
                 return `A role department is needed in order to continue.`
             }
+            
+            return true
+                  
+            }
         }
-    },
+    ,
     {
         when: (answers) => answers.action == 'add an employee',
         type: 'input',
@@ -109,11 +106,11 @@ const answers = await inquirer.prompt([
         name: 'employeeRole',
         message: `What is the id number of the role of your new employee?`,
         validate: (value) => {
-            if(value) {
-                return true
-            } else {
-                return `I need yo know the role of your new employee to proceed.`
+            if(!value || isNaN(value)) {       
+              return `I need yo know the role of your new employee to proceed.`
             }
+            
+            return true
         }
     },   
     {
@@ -122,11 +119,10 @@ const answers = await inquirer.prompt([
         name: 'employeeManager',
         message: `What is the ID number of your new employee's manager?`,
         validate: (value) => {
-            if(value) {
-                return true
-            } else {
-                return `I need to have their manager name in order to continue.`
+            if(!value || isNaN(value)) {             
+              return `I need to have their manager name in order to continue.`
             }
+            return true
         }
     },
     {
@@ -135,11 +131,11 @@ const answers = await inquirer.prompt([
         name: 'employeeId',
         message: `What is the company ID number of the employee you want to relocate?`,
         validate: (value) => {
-            if(value) {
-                return true
-            } else {
+            if(!value || isNaN(value)) { 
+      
                 return `I need to have your employee's company ID number in order to continue.`
             }
+            return true
         }
     },  
     {
