@@ -26,7 +26,7 @@ const handleAnswers = (data) => {
     let employeeNewRole = data.employeeNewRole;
 
     if(action == 'view all departments') {
-       db.query(`SELECT department_id AS ID, department_name AS Department FROM department` , (err, [result]) => {
+       db.query(`SELECT department_id AS ID, department_name AS Department FROM department` , (err, result) => {
         if(err) {
             console.error("Error:" + err);            
         }
@@ -39,7 +39,7 @@ const handleAnswers = (data) => {
     // join department on role.department_id = department.department_id
     if (action == 'view all roles') {
 
-        db.query(`SELECT role_id, role_title, role_salary, department_id from role` , (err, [result]) => {
+        db.query(`SELECT role_id as ID, role_title as Role, role_salary as Salary, role.department_id from role join department on role.department_id = department.department_id` , (err, result) => {
             if(err) {
                 console.error("Error:" + err);
             }
@@ -51,7 +51,7 @@ const handleAnswers = (data) => {
 
     if (action == 'view all employees') {
 
-        db.query(`SELECT * FROM employee join role on employee.role_id = role.role_id` , (err, [result]) => {
+        db.query(`SELECT employee_id as ID, employee_firstName as First_Name, employee_lastName as Last_Name, role.role_title as Role, manager_id FROM employee join role on employee.role_id = role.role_id` , (err, result) => {
             if(err) {
                 console.error("Error:" + err);
             }
