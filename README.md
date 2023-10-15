@@ -4,7 +4,7 @@ Watch the demonstrational video:
 https://drive.google.com/file/d/1s7kADFHBE6ifHrrJhUXoehkVLJGzT6Tk/view
 
 ## DESCRIPTION
-This is an effective tool that enables business owners to easily view and manage the departments, roles and employees within the company by selecting the desired information from your command line. You are also able to populate and update data with this app. Give it a try. It's free.
+This is an effective tool that enables business owners to easily view and manage the departments, roles and employees within the company by selecting the desired information from your command line. You are also able to populate and update data with this app. Built using mainly MySql database. Give it a try. It's free.
 
 ## TABLE OF CONTENTS
 * [Installation](#installation)
